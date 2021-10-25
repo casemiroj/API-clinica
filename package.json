@@ -1,0 +1,21 @@
+{
+  "name": "api-clinica",
+  "version": "1.0.0",
+  "description": "API desenvolvida para o curso de ADS da UNINOVE",
+  "main": "index.js",
+  "author": "João Casemiro",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/app/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "nodemon": "^2.0.14"
+  }
+}
