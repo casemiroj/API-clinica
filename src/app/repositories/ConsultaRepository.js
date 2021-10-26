@@ -1,4 +1,3 @@
-const { v4: uuid } = require('uuid');
 const Consulta = require('../models/Consulta');
 
 class ConsultaRepository {
@@ -6,7 +5,6 @@ class ConsultaRepository {
     paciente, idade, telefone, cpf, especialidade,
   }) {
     const consulta = {
-      id: uuid(),
       paciente,
       idade,
       telefone,
@@ -20,6 +18,12 @@ class ConsultaRepository {
     await Consulta.create(consulta);
 
     return consulta;
+  }
+
+  async findAll() {
+    const consultas = await Consulta.find();
+
+    return consultas;
   }
 }
 

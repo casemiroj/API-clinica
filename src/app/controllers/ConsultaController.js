@@ -16,6 +16,16 @@ class ConsultaController {
 
     return res.status(201).json(consulta);
   }
+
+  async listarConsultas(req, res) {
+    const consultas = await ConsultaRepository.findAll();
+
+    if (!consultas) {
+      res.status(404).json({ Erro: 'Nenhuma consulta encontrada' });
+    }
+
+    return res.status(200).json(consultas);
+  }
 }
 
 module.exports = new ConsultaController();
