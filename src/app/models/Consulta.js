@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Consulta = mongoose.model('Consulta', {
+  id: String,
   paciente: String,
   idade: Number,
   cpf: String,
