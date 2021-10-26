@@ -25,6 +25,12 @@ class ConsultaRepository {
 
     return consultas;
   }
+
+  async findById(id) {
+    const consulta = await Consulta.findOne({ _id: id });
+
+    return consulta;
+  }
 }
 
 module.exports = new ConsultaRepository();

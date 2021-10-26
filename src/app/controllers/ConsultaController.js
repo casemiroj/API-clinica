@@ -20,11 +20,27 @@ class ConsultaController {
   async listarConsultas(req, res) {
     const consultas = await ConsultaRepository.findAll();
 
-    if (!consultas) {
-      res.status(404).json({ Erro: 'Nenhuma consulta encontrada' });
+    if (consultas.length < 1) {
+      return res.status(404).json({ Erro: 'Nenhuma consulta encontrada' });
     }
 
     return res.status(200).json(consultas);
+  }
+
+  async listarConsultaPorId(req, res) {
+    try {
+      const { id } = req.params;
+
+      const consulta = await ConsultaRepository.findById(id);
+
+      if (!consulta) {
+        return res.status(400).json({ Erro: 'Nenhuma consulta encontrada' });
+      }
+
+      return res.status(200).json(consulta);
+    } catch {
+      return res.status(500).json({ Erro: 'ID inválido' });
+    }
   }
 }
 
