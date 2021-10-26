@@ -1,27 +1,20 @@
-const { v4: uuid } = require('uuid');
-const moment = require('moment');
-
-const dateFormat = 'DD/MM/YYYY - HH:mm';
+const ConsultaRepository = require('../repositories/ConsultaRepository');
 
 class ConsultaController {
-  criarConsulta(req, res) {
+  async criarConsulta(req, res) {
     const {
       paciente, idade, telefone, cpf, especialidade,
     } = req.body;
 
-    const consulta = {
-      id: uuid(),
-      paciente,
-      idade,
-      telefone,
-      cpf,
-      especialidade,
-      created_at: moment().format(dateFormat),
-      updated_at: null,
-      retorno: false,
-    };
+    if (!(paciente && idade && telefone && cpf && especialidade)) {
+      return res.status(400).json({ Erro: 'Informe todos os dados' });
+    }
 
-    res.json(consulta);
+    const consulta = await ConsultaRepository.create({
+      paciente, idade, telefone, cpf, especialidade,
+    });
+
+    return res.status(201).json(consulta);
   }
 }
 

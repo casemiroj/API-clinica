@@ -8,7 +8,7 @@ const Consulta = mongoose.model('Consulta', {
   telefone: Number,
   especialidade: String,
   created_at: Date,
-  updated_at: Date,
+  updated_at: Date || null,
   retorno: Boolean,
 });
 
