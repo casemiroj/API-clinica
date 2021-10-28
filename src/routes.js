@@ -3,6 +3,9 @@ const ConsultaController = require('./app/controllers/ConsultaController');
 
 const router = Router();
 
+router.get('/', (req, res) => {
+  res.send('Olá');
+});
 router.post('/consultas', ConsultaController.criarConsulta);
 router.get('/consultas', ConsultaController.listarConsultas);
 router.get('/consultas/:id', ConsultaController.listarConsultaPorId);
