@@ -6,7 +6,8 @@
   "author": "João Casemiro",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
