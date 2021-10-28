@@ -31,6 +31,18 @@ class ConsultaRepository {
 
     return consulta;
   }
+
+  async updateConsulta(id, dados) {
+    await Consulta.updateOne({ _id: id }, dados);
+
+    const consulta = await this.findById(id);
+
+    return consulta;
+  }
+
+  async updateRetorno(id) {
+    await Consulta.updateOne({ _id: id }, { retorno: true });
+  }
 }
 
 module.exports = new ConsultaRepository();
