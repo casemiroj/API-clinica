@@ -11,6 +11,6 @@ app.use(router);
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log('📚 Banco de dados conectado');
-    app.listen(3000, () => console.log('🔥 Servidor online'));
+    app.listen(process.env.PORT || 3000, () => console.log('🔥 Servidor online'));
   })
   .catch((err) => console.log(err));

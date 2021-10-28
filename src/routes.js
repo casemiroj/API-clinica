@@ -8,5 +8,6 @@ router.get('/consultas', ConsultaController.listarConsultas);
 router.get('/consultas/:id', ConsultaController.listarConsultaPorId);
 router.put('/consultas/:id', ConsultaController.atualizarConsulta);
 router.patch('/consultas/retorno/:id', ConsultaController.retornoConsulta);
+router.delete('/consultas/:id', ConsultaController.deleteConsulta);
 
 module.exports = router;

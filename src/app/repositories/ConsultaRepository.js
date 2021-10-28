@@ -43,6 +43,10 @@ class ConsultaRepository {
   async updateRetorno(id) {
     await Consulta.updateOne({ _id: id }, { retorno: true });
   }
+
+  async deleteConsulta(id) {
+    await Consulta.deleteOne({ _id: id });
+  }
 }
 
 module.exports = new ConsultaRepository();

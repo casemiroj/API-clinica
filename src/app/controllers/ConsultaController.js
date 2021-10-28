@@ -81,6 +81,20 @@ class ConsultaController {
 
     return res.status(200).json({ retorno: true });
   }
+
+  async deleteConsulta(req, res) {
+    const { id } = req.params;
+
+    const consulta = await ConsultaRepository.findById(id);
+
+    if (!consulta) {
+      return res.status(404).json({ Erro: 'Nenhuma consulta encontrada' });
+    }
+
+    await ConsultaRepository.deleteConsulta(id);
+
+    return res.status(200).json({ deletado: true });
+  }
 }
 
 module.exports = new ConsultaController();
