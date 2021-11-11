@@ -1,0 +1,517 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Clinica UNINOVE",
+    "description": "Esta é uma documentação sobre a API da clinica uninove, projeto desenvolvido durante o 4º semestre do curso de Análise e Desenvolvimento de Sistemas",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/consultas": {
+      "post": {
+        "tags": ["Consultas"],
+        "summary": "Criar consultas",
+        "description": "Cria uma nova consulta e cadastra no banco de dados",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "paciente": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "number"
+                  },
+                  "telefone": {
+                    "type": "number"
+                  },
+                  "idade": {
+                    "type": "number"
+                  },
+                  "especialidade": {
+                    "type": "string"
+                  } 
+                },
+                "example": {
+                  "paciente": "José Carlos",
+                  "cpf": 12345678900,
+                  "telefone": 12345678900,
+                  "idade": 20,
+                  "especialidade": "Clinico Geral"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Consulta criada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "paciente": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "number"
+                    },
+                    "telefone": {
+                      "type": "number"
+                    },
+                    "idade": {
+                      "type": "number"
+                    },
+                    "especialidade": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "retorno": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "paciente": "José Carlos",
+                    "cpf": 12345678900,
+                    "telefone": 12345678900,
+                    "idade": 20,
+                    "especialidade": "Clinico Geral",
+                    "created_at": "2021-10-01T20:31:00.954Z",
+                    "updated_at": null,
+                    "retorno": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Consultas"],
+        "summary": "Listar Consultas",
+        "description": "Lista todas as consultas cadastradas no banco de dados",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "paciente": {
+                        "type": "string"
+                      },
+                      "cpf": {
+                        "type": "number"
+                      },
+                      "telefone": {
+                        "type": "number"
+                      },
+                      "idade": {
+                        "type": "number"
+                      },
+                      "especialidade": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "retorno": {
+                        "type": "boolean"
+                      },
+                      "_v": {
+                        "type": "number"
+                      }
+                    },
+                    "example": {
+                      "_id": "617b260791dee5609b8efc66",
+                      "paciente": "José Carlos",
+                      "cpf": 12345678900,
+                      "telefone": 12345678900,
+                      "idade": 20,
+                      "especialidade": "Clinico Geral",
+                      "created_at": "2021-10-01T20:31:00.954Z",
+                      "updated_at": "2021-10-01T20:31:00.954Z",
+                      "retorno": false,
+                      "_v": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhuma consulta encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Erro": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "Erro": "Nenhuma consulta encontrada"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consultas/{id}": {
+      "get": {
+        "tags": ["Consultas"],
+        "summary": "Listar Consulta",
+        "description": "Listagem de apenas uma consulta, passando o id como parametro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da consulta que deseja pesquisar",
+            "schema": {
+              "type": "string"
+            },
+            "example": {
+              "id": "617b260791dee5609b8efc66"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "paciente": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "number"
+                    },
+                    "telefone": {
+                      "type": "number"
+                    },
+                    "idade": {
+                      "type": "number"
+                    },
+                    "especialidade": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "retorno": {
+                      "type": "boolean"
+                    },
+                    "_v": {
+                      "type": "number"
+                    }
+                  },
+                  "example": {
+                    "_id": "617b260791dee5609b8efc66",
+                    "paciente": "José Carlos",
+                    "cpf": 12345678900,
+                    "telefone": 12345678900,
+                    "idade": 20,
+                    "especialidade": "Clinico Geral",
+                    "created_at": "2021-10-01T20:31:00.954Z",
+                    "updated_at": "2021-10-01T20:31:00.954Z",
+                    "retorno": false,
+                    "_v": 0
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhuma consulta encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Erro": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "Erro": "Nenhuma consulta encontrada"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Consultas"],
+        "summary": "Atualizar Consulta",
+        "description": "Atualização de apenas uma consulta, passando o id como parametro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da consulta que deseja pesquisar",
+            "schema": {
+              "type": "string"
+            },
+            "example": {
+              "id": "617b260791dee5609b8efc66"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "paciente": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "number"
+                  },
+                  "telefone": {
+                    "type": "number"
+                  },
+                  "idade": {
+                    "type": "number"
+                  },
+                  "especialidade": {
+                    "type": "string"
+                  } 
+                },
+                "example": {
+                  "paciente": "José Carlos da Silva",
+                  "cpf": 12345678900,
+                  "telefone": 12345678900,
+                  "idade": 22,
+                  "especialidade": "Ortopedia"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Consulta criada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "paciente": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "number"
+                    },
+                    "telefone": {
+                      "type": "number"
+                    },
+                    "idade": {
+                      "type": "number"
+                    },
+                    "especialidade": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "retorno": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "paciente": "José Carlos da Silva",
+                    "cpf": 12345678900,
+                    "telefone": 12345678900,
+                    "idade": 22,
+                    "especialidade": "Ortopedia",
+                    "created_at": "2021-10-01T20:31:00.954Z",
+                    "updated_at": "2021-11-01T20:31:00.954Z",
+                    "retorno": false
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhuma consulta encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Erro": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "Erro": "Nenhuma consulta encontrada"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Consultas"],
+        "summary": "Deletar Consulta",
+        "description":"Deleta apenas uma consulta, passando o id como parametro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da consulta que deseja pesquisar",
+            "schema": {
+              "type": "string"
+            },
+            "example": {
+              "id": "617b260791dee5609b8efc66"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta Deletada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deletado": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "deletado": true
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhuma consulta encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Erro": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "Erro": "Nenhuma consulta encontrada"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consultas/retorno/{id}": {
+      "patch": {
+        "tags": ["Consultas"],
+        "summary": "Atualizar retorno de consulta",
+        "description":"Atualização de retorno de apenas uma consulta, passando o id como parametro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da consulta que deseja pesquisar",
+            "schema": {
+              "type": "string"
+            },
+            "example": {
+              "id": "617b260791dee5609b8efc66"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno Atualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "retorno": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "retorno": true
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhuma consulta encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Erro": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "Erro": "Nenhuma consulta encontrada"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
